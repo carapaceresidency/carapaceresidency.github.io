@@ -326,10 +326,19 @@
             background-color: #f8faf7;
         }
 
-        .location-box img {
+        .map-container {
             width: 100%;
             border-radius: 6px;
+            overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 15px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 280px;
+            border: 0;
+            display: block;
         }
 
         /* Lead Generation Footer Form */
@@ -496,7 +505,7 @@
 
     <!-- Plots Database and Distance Chart Section Layout Split -->
     <section class="section-container" id="plots">
-        <h2 class="section-title">प्लॉट एरिया स्टेटमेंट आणि अंतर चार्ट</h2>
+        <h2 class="section-title">प्लॉट領 क्षेत्रफळ आणि गुगल मॅप लोकेशन</h2>
         <div class="info-split">
             <div class="table-responsive">
                 <h3 style="color: var(--primary); margin-bottom: 10px;">📐 उपलब्ध प्लॉट क्षेत्रफळ (Carpet Area)</h3>
@@ -522,15 +531,22 @@
                 </table>
             </div>
             <div class="location-box">
-                <h3 style="color: var(--primary); margin-bottom: 10px;">📍 ठिकाणांचे अंतर</h3>
+                <h3 style="color: var(--primary); margin-bottom: 10px;">📍 गुगल मॅप लोकेशन</h3>
                 <ul style="list-style: none; font-size: 0.9rem; line-height: 1.8; margin-bottom: 15px;">
-                    <li>• पोलादपूर सिटी /特色 मार्केट / एस.टी. डेपो - <b>१ कि.मी.</b></li>
+                    <li>• पोलादपूर सिटी / मार्केट / एस.टी. डेपो - <b>१ कि.मी.</b></li>
                     <li>• हायवे / पेट्रोल पंप / हॉस्पिटल / कॉलेज - <b>१ ते १.५ कि.मी.</b></li>
                     <li>• रेल्वे स्टेशन / झुलता पूल - <b>१० कि.मी.</b></li>
                     <li>• महाबळेश्वर - <b>४० कि.मी.</b> | प्रतापगड - <b>२० कि.मी.</b></li>
-                    <li>• दापोली-कर्दे बीच, हर्णे beach - <b>१ तास</b></li>
                 </ul>
-                <img src="photos/view_8.JPG" alt="लोकेशन मॅप">
+                <div class="map-container">
+                    <!-- Interactive Google Map Embed synchronized from the user location link -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3795.3400511871276!2d73.473551!3d17.962002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDU3JzQzLjIiTiA3M8KwMjgnMjQuOCJF!5e0!3m2!1smr!2sin!4v1710000000000!5m2!1smr!2sin" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
