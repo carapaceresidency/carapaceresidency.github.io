@@ -534,7 +534,7 @@
             <div class="location-box">
                 <h3 style="color: var(--primary); margin-bottom: 10px;">📍 गुगल मॅप लोकेशन</h3>
                 <ul style="list-style: none; font-size: 0.9rem; line-height: 1.8; margin-bottom: 15px;">
-                    <li>• पोलादपूर सिटी / मार्केट / एस.टी. डेपो - <b>१ कि.मी.</b></li>
+                    <li>• पोलादपूर सिटी /特色 मार्केट / एस.टी. डेपो - <b>१ कि.मी.</b></li>
                     <li>• हायवे / पेट्रोल पंप / हॉस्पिटल / कॉलेज - <b>१ ते १.५ कि.मी.</b></li>
                     <li>• रेल्वे स्टेशन / झुलता पूल - <b>१० कि.मी.</b></li>
                     <li>• महाबळेश्वर - <b>४० कि.मी.</b> | प्रतापगड - <b>२० कि.मी.</b></li>
@@ -563,16 +563,18 @@
             </div>
             <div class="footer-form">
                 <h3>विनामूल्य साईट व्हिजिट बुक करा</h3>
-                <!-- Formspree Integration Setup: Change 'YOUR_FORMSPREE_ID' with your unique form endpoint from formspree.io -->
-                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-                    <input type="text" name="Client Name" placeholder="तुमचे नाव" required>
-                    <input type="tel" name="Mobile Number" placeholder="मोबाईल नंबर" required>
-                    <select name="Preferred Plot Size">
+                <!-- Formspree Integration Complete -->
+                <form id="enquiryForm" action="https://formspree.io/f/mqeogjal" method="POST">
+                    <input type="text" id="name" name="नाव (Name)" placeholder="तुमचे नाव" required>
+                    <input type="tel" id="phone" name="मोबाईल नंबर (Mobile)" placeholder="मोबाईल नंबर" required>
+                    <select id="plotSize" name="प्लॉट क्षेत्रफळ आवड (Preferred Plot Size)">
                         <option value="Not Specified">तुम्हाला रस असलेला प्लॉट निवडा</option>
                         <option value="1,500 - 2,000 Sq.Ft.">१,५०० - २,०० Sq.Ft.</option>
                         <option value="2,000 - 3,000 Sq.Ft.">२,००० - ३,००० Sq.Ft.</option>
                         <option value="3,000+ Sq.Ft.">३,०००+ Sq.Ft. (बंगलो स्पेशल)</option>
                     </select>
+                    <!-- Anti-spam honeypot field -->
+                    <input type="text" name="_gotcha" style="display:none">
                     <button type="submit">माहिती सबमिट करा</button>
                 </form>
             </div>
@@ -605,7 +607,7 @@
             showSlide(currentSlideIdx + step);
         }
 
-        // Optional auto-rotation logic for presentation view
+        // Auto-rotation logic for gallery images
         setInterval(() => {
             moveSlide(1);
         }, 5000);
