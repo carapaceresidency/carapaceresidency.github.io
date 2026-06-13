@@ -362,6 +362,17 @@
             font-size: 0.95rem;
         }
 
+        .footer-info ul li a {
+            color: #d1ebd0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-info ul li a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
         .footer-form input, .footer-form select {
             width: 100%;
             padding: 12px;
@@ -513,7 +524,7 @@
             <div class="location-box">
                 <h3 style="color: var(--primary); margin-bottom: 10px;">📍 ठिकाणांचे अंतर</h3>
                 <ul style="list-style: none; font-size: 0.9rem; line-height: 1.8; margin-bottom: 15px;">
-                    <li>• पोलादपूर सिटी / मार्केट / एस.टी. डेपो - <b>१ कि.मी.</b></li>
+                    <li>• पोलादपूर सिटी /特色 मार्केट / एस.टी. डेपो - <b>१ कि.मी.</b></li>
                     <li>• हायवे / पेट्रोल पंप / हॉस्पिटल / कॉलेज - <b>१ ते १.५ कि.मी.</b></li>
                     <li>• रेल्वे स्टेशन / झुलता पूल - <b>१० कि.मी.</b></li>
                     <li>• महाबळेश्वर - <b>४० कि.मी.</b> | प्रतापगड - <b>२० कि.मी.</b></li>
@@ -535,18 +546,20 @@
                     <li>📞 9765137787</li>
                     <li>📞 8263884676</li>
                     <li>📞 8788155272</li>
+                    <li style="margin-top: 10px;">📧 <b>ईमेल:</b> <a href="mailto:carapaceresidency@gmail.com">carapaceresidency@gmail.com</a></li>
                 </ul>
             </div>
             <div class="footer-form">
                 <h3>विनामूल्य साईट व्हिजिट बुक करा</h3>
-                <form onsubmit="event.preventDefault(); alert('तुमची माहिती सुरक्षितपणे नोंदवली गेली आहे! आमचे प्रतिनिधी लवकरच संपर्क करतील.');">
-                    <input type="text" placeholder="तुमचे नाव" required>
-                    <input type="tel" placeholder="मोबाईल नंबर" required>
-                    <select>
-                        <option value="">तुम्हाला रस असलेला प्लॉट निवडा</option>
-                        <option value="small">१,५०० - २,०० Sq.Ft.</option>
-                        <option value="medium">२,००० - ३,००० Sq.Ft.</option>
-                        <option value="large">३,०००+ Sq.Ft. (बंगलो स्पेशल)</option>
+                <!-- Formspree Integration Setup: Change 'YOUR_FORMSPREE_ID' with your unique form endpoint from formspree.io -->
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                    <input type="text" name="Client Name" placeholder="तुमचे नाव" required>
+                    <input type="tel" name="Mobile Number" placeholder="मोबाईल नंबर" required>
+                    <select name="Preferred Plot Size">
+                        <option value="Not Specified">तुम्हाला रस असलेला प्लॉट निवडा</option>
+                        <option value="1,500 - 2,000 Sq.Ft.">१,५०० - २,०० Sq.Ft.</option>
+                        <option value="2,000 - 3,000 Sq.Ft.">२,००० - ३,००० Sq.Ft.</option>
+                        <option value="3,000+ Sq.Ft.">३,०००+ Sq.Ft. (बंगलो स्पेशल)</option>
                     </select>
                     <button type="submit">माहिती सबमिट करा</button>
                 </form>
