@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कॅरापेस रेसिडेन्सी (Carapace Residency) - पोलादपूर | राजलक्ष्मी डेव्हलपर्स</title>
+    <style>
+        /* Modern CSS Variables & Resets */
+        :root {
+            --primary: #2d5a27;
+            --primary-dark: #1e3d1a;
+            --accent: #d4af37;
+            --text-dark: #2c3e50;
+            --text-light: #5a6c7d;
+            --bg-light: #fafbf9;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-btn {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Hero Showcase Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('photos/view_8.JPG') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+        }
+
+        /* Interactive Slider Grid Section */
+        .section-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Media Layout: Video & Photo Slider Row */
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h2 { font-size: 2rem; }
+        }
+
+        /* Video Container Panel */
+        .video-wrapper {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background-color: #000;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Image Slider Component */
+        .slider-wrapper {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Mirror the aspect ratio of video */
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(45, 90, 39, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .prev-btn { left: 25px; }
+        .next-btn { right: 25px; }
+
+        /* Highlights & Amenities Card Deck */
+        .features-deck {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--primary);
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* Interactive Plot Area Statement Table & Map Split */
+        .info-split {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            margin-top: 50px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 900px) {
+            .info-split { grid-template-columns: 1fr; }
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: center;
+            border-bottom: 1px solid #eef2f5;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8faf7;
+        }
+
+        .location-box img {
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Lead Generation Footer Form */
+        footer {
+            background-color: #1a2a18;
+            color: #d1ebd0;
+            padding: 50px 5% 20px 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info h3, .footer-form h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .footer-info ul {
+            list-style: none;
+        }
+
+        .footer-info ul li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .footer-form input, .footer-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #344e31;
+            background-color: #243821;
+            color: var(--white);
+            border-radius: 4px;
+        }
+
+        .footer-form button {
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            border: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .footer-form button:hover {
+            background-color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #2d422a;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Professional Navigation Grid -->
+    <nav>
+        <div class="logo-container">
+            <img src="photos/logo.png" alt="Logo" class="logo-img">
+            <div class="logo-text">
+                <h1>Carapace Residency</h1>
+                <p>RAJLAXMI DEVELOPERS</p>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">प्रकल्प परिचय</a></li>
+            <li><a href="#media">गॅलरी आणि व्हिडिओ</a></li>
+            <li><a href="#plots">प्लॉट क्षेत्रफळ</a></li>
+            <li><a href="#contact" class="cta-btn">बुक करा</a></li>
+        </ul>
+    </nav>
+
+    <!-- Project Hero Section -->
+    <header class="hero">
+        <h2>एक समृद्ध जीवनशैली आता आपल्या कोकणामध्ये...</h2>
+        <p>कलेक्टर एन.ए., टाउन प्लॅन सॅंक्शन भव्य बंगलो प्लॉट्स - पोलादपूर (मुंबई-गोवा नॅशनल हायवेलगत)</p>
+        <a href="#contact" class="cta-btn" style="padding: 12px 30px; font-size: 1.1rem; border-radius: 30px;">अधिक माहिती मिळवा</a>
+    </header>
+
+    <!-- Main Dynamic Media Gallery Showcase Container -->
+    <section class="section-container" id="media">
+        <h2 class="section-title">प्रकल्प प्रत्यक्ष दर्शन व प्रगती</h2>
+        
+        <div class="media-grid">
+            <!-- Dynamic Local / Embedded Video Section Container Box -->
+            <div class="video-wrapper">
+                <h3 style="margin-bottom: 15px; color: var(--primary);">🎥 ड्रोनद्वारे विहंगम दृश्य</h3>
+                <div class="video-container">
+                    <video controls preload="metadata" poster="photos/view_1.JPG">
+                        <source src="photos/carapace_video.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">हायवे कनेक्टिव्हिटी, अंतर्गत रस्ते आणि निसर्गरम्य परिसराचे विहंगम हवाई दृश्य पहा.</p>
+            </div>
+
+            <!-- Dynamic Local Photo Presentation Slider Carousel Area -->
+            <div class="slider-wrapper">
+                <h3 style="margin-bottom: 15px; color: var(--primary);">📸 साईट फोटो गॅलरी</h3>
+                <div class="slider-container">
+                    <div class="slide active"><img src="photos/view_1.JPG" alt="साईट फोटो १"></div>
+                    <div class="slide"><img src="photos/view_2.JPG" alt="साईट फोटो २"></div>
+                    <div class="slide"><img src="photos/view_3.JPG" alt="साईट फोटो ३"></div>
+                    <div class="slide"><img src="photos/view_4.JPG" alt="साईट फोटो ४"></div>
+                    <div class="slide"><img src="photos/view_5.JPG" alt="साईट फोटो ५"></div>
+                    <div class="slide"><img src="photos/view_6.JPG" alt="साईट फोटो ६"></div>
+                    <div class="slide"><img src="photos/view_7.JPG" alt="साईट फोटो ७"></div>
+                    <div class="slide"><img src="photos/view_8.JPG" alt="साईट फोटो ८"></div>
+                </div>
+                <button class="slider-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="slider-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+                <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">तैयार डांबरी रस्ते, स्वतंत्र संरक्षक भिंती आणि प्लॉट्सचे सुसूत्रीकरण दर्शवणारे वास्तविक फोटो.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Features Deck -->
+    <section class="section-container" id="about" style="background-color: #fff; padding: 40px 20px; border-radius: 8px;">
+        <h2 class="section-title">प्रकल्पाची वैशिष्ट्ये व सोयी-सुविधा</h2>
+        <div class="features-deck">
+            <div class="feature-card">
+                <h3>📜 कायदेशीर मंजुरी</h3>
+                <p>कलेक्टर एन.ए. (Collector NA) आणि टाउन प्लॅन मंजूर लेआउट. प्रत्येक प्लॉटचा स्वतंत्र सातबारा (7/12).</p>
+            </div>
+            <div class="feature-card">
+                <h3>🛣️ अंतर्गत रस्ते</h3>
+                <p>४० फूट मुख्य रस्ता आणि ३० फूट अंतर्गत सुसज्ज डांबरी रस्ते, तसेच रस्त्याच्या कडेला पुरेसे प्रकाश दिवे.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧱 सुरक्षितता व नियोजन</h3>
+                <p>संपूर्ण प्लॉटला संरक्षक भिंत, मुख्य आकर्षक गेट व सुरक्षा केबिनसह संपूर्ण भूगर्भ चाचणी पूर्ण.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌳 निसर्ग व मनोरंजन</h3>
+                <p>प्रदूषणमुक्त, नयनरम्य व अत्यंत हवेची जागा. लहान मुलांसाठी बाग, ज्येष्ठांना विरंगुळ्यासाठी जागा आणि वृक्षारोपण.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plots Database and Distance Chart Section Layout Split -->
+    <section class="section-container" id="plots">
+        <h2 class="section-title">प्लॉट एरिया स्टेटमेंट आणि अंतर चार्ट</h2>
+        <div class="info-split">
+            <div class="table-responsive">
+                <h3 style="color: var(--primary); margin-bottom: 10px;">📐 उपलब्ध प्लॉट क्षेत्रफळ (Carpet Area)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>प्लॉट क्र.</th>
+                            <th>क्षेत्रफळ (SqFt)</th>
+                            <th>प्लॉट क्र.</th>
+                            <th>क्षेत्रफळ (SqFt)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>01 / 09 / 10</td><td>1937</td><td>11 / 12 / 13</td><td>1937</td></tr>
+                        <tr><td>02</td><td>2001</td><td>14</td><td>1485</td></tr>
+                        <tr><td>03</td><td>1872</td><td>15</td><td>1614</td></tr>
+                        <tr><td>04</td><td>3938</td><td>16</td><td>2324</td></tr>
+                        <tr><td>05</td><td>2055</td><td>17</td><td>2690</td></tr>
+                        <tr><td>06</td><td>2227</td><td>18</td><td>3056</td></tr>
+                        <tr><td>07</td><td>2410</td><td>19</td><td>3422</td></tr>
+                        <tr><td>08</td><td>3185</td><td>21</td><td>1862</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="location-box">
+                <h3 style="color: var(--primary); margin-bottom: 10px;">📍 ठिकाणांचे अंतर</h3>
+                <ul style="list-style: none; font-size: 0.9rem; line-height: 1.8; margin-bottom: 15px;">
+                    <li>• पोलादपूर सिटी / मार्केट / एस.टी. डेपो - <b>१ कि.मी.</b></li>
+                    <li>• हायवे / पेट्रोल पंप / हॉस्पिटल / कॉलेज - <b>१ ते १.५ कि.मी.</b></li>
+                    <li>• रेल्वे स्टेशन / झुलता पूल - <b>१० कि.मी.</b></li>
+                    <li>• महाबळेश्वर - <b>४० कि.मी.</b> | प्रतापगड - <b>२० कि.मी.</b></li>
+                    <li>• दापोली-कर्दे बीच, हर्णे beach - <b>१ तास</b></li>
+                </ul>
+                <img src="photos/view_8.JPG" alt="लोकेशन मॅप">
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Footer Form and Lead Collector Panel -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h3>संपर्क कार्यालय</h3>
+                <p style="margin-bottom: 15px; font-weight: bold; color: var(--accent);">राजलक्ष्मी डेव्हलपर्स (Rajlaxmi Developers)</p>
+                <p><b>साईट पत्ता:</b> मु. पो. चोळई, मुंबई गोवा नॅशनल हायवे, ता. पोलादपूर, जि. रायगड.</p>
+                <ul style="margin-top: 20px;">
+                    <li>📞 9765137787</li>
+                    <li>📞 8263884676</li>
+                    <li>📞 8788155272</li>
+                </ul>
+            </div>
+            <div class="footer-form">
+                <h3>विनामूल्य साईट व्हिजिट बुक करा</h3>
+                <form onsubmit="event.preventDefault(); alert('तुमची माहिती सुरक्षितपणे नोंदवली गेली आहे! आमचे प्रतिनिधी लवकरच संपर्क करतील.');">
+                    <input type="text" placeholder="तुमचे नाव" required>
+                    <input type="tel" placeholder="मोबाईल नंबर" required>
+                    <select>
+                        <option value="">तुम्हाला रस असलेला प्लॉट निवडा</option>
+                        <option value="small">१,५०० - २,०० Sq.Ft.</option>
+                        <option value="medium">२,००० - ३,००० Sq.Ft.</option>
+                        <option value="large">३,०००+ Sq.Ft. (बंगलो स्पेशल)</option>
+                    </select>
+                    <button type="submit">माहिती सबमिट करा</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 Carapace Residency - Rajlaxmi Developers. All Rights Reserved. Layout design compliant with standard provisions.</p>
+        </div>
+    </footer>
+
+    <!-- Image Slider Carousel Control Engine Logic -->
+    <script>
+        let currentSlideIdx = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlideIdx = 0;
+            else if (index < 0) currentSlideIdx = slides.length - 1;
+            else currentSlideIdx = index;
+
+            slides.forEach((slide, i) => {
+                if (i === currentSlideIdx) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        }
+
+        function moveSlide(step) {
+            showSlide(currentSlideIdx + step);
+        }
+
+        // Optional auto-rotation logic for presentation view
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>
